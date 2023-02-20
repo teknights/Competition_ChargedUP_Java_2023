@@ -30,7 +30,13 @@ public class RobotContainer {
       new CommandXboxController(OperatorConstants.kDriverControllerPort);
     
     Drivetrain drivetrain = new Drivetrain();
-    XboxController drivController = new XboxController(0);
+    XboxController drivController = new XboxController(OperatorConstants.kDriverControllerPort);
+
+    private final CommandXboxController m_armController =
+    new CommandXboxController(OperatorConstants.kArmControllerPort);
+
+    XboxController armController = new XboxController(OperatorConstants.kArmControllerPort);
+    
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {

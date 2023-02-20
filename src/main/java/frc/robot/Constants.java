@@ -15,5 +15,14 @@ package frc.robot;
 public final class Constants {
   public static class OperatorConstants {
     public static final int kDriverControllerPort = 0;
+    public static final int kArmControllerPort = 1;
   }
+  // Solenoids for ArmKick
+public static final int Arm_Kick_Deploy = 0;
+public static final int Arm_Kick_Retract = 1;
+//CAn IDs
+  public static final int Left_Front_Motor_ID = 3;
+  public static final int Left_Back_Motor_ID = 2;
+  public static final int Right_Front_Motor_ID = 5;
+  public static final int Right_Back_Motor_ID = 4;
 }
