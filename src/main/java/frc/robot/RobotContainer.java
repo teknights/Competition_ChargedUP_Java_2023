@@ -26,12 +26,13 @@ public class RobotContainer {
   private final ExampleSubsystem m_exampleSubsystem = new ExampleSubsystem();
 
   // Replace with CommandPS4Controller or CommandJoystick if needed
+  //Driver Controller
   private final CommandXboxController m_driverController =
       new CommandXboxController(OperatorConstants.kDriverControllerPort);
     
     Drivetrain drivetrain = new Drivetrain();
     XboxController drivController = new XboxController(OperatorConstants.kDriverControllerPort);
-
+//Arm Controller
     private final CommandXboxController m_armController =
     new CommandXboxController(OperatorConstants.kArmControllerPort);
 
@@ -42,7 +43,7 @@ public class RobotContainer {
   public RobotContainer() {
     // Configure the trigger bindings
     configureBindings();
-
+//Calls drivetrain when nothing is using the driving motors for example during auto
     drivetrain.setDefaultCommand(new RunCommand(() -> drivetrain.drive(-drivController.getLeftY(), drivController.getRightX()), drivetrain));
   }
 
