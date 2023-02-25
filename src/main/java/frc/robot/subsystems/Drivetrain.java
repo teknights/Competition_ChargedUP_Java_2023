@@ -23,9 +23,14 @@ public class Drivetrain extends SubsystemBase
     );
 
     public void drive(double xSpeed, double zRotation)
-    {
+    {//this creates the driv xbox controller in port 0
         XboxController drivController = new XboxController(0);
-        drivetrain.arcadeDrive(-drivController.getRightX(), -drivController.getLeftY());
+        /*This takes the input from the controller and sets the motor to that value. You may
+        notice that it is being multiplied by itself. This is on purpose as it makes the
+        input exponetial to essentially create a ramp on the motots as it will be less sensitve
+        near the center of the drive stick and more sensitve the farther you push the joysticks
+        */
+        drivetrain.arcadeDrive(-drivController.getRightX()*drivController.getRightX(), -drivController.getLeftY()*drivController.getLeftY());
     }
 }
 //robot is driving
