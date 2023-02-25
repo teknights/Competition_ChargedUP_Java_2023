@@ -9,6 +9,7 @@ import frc.robot.commands.Autos;
 import frc.robot.commands.ExampleCommand;
 import frc.robot.subsystems.Drivetrain;
 import frc.robot.subsystems.ExampleSubsystem;
+import edu.wpi.first.cameraserver.CameraServer;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.XboxController.Button;
 import edu.wpi.first.wpilibj2.command.Command;
@@ -78,4 +79,10 @@ public class RobotContainer {
     // An example command will be run in autonomous
     return Autos.exampleAuto(m_exampleSubsystem);
   }
+
+  /** This function is called periodically whilst in simulation. 
+   * @param robot TODO*/
+  public void simulationPeriodicInit(Robot robot) {
+     robot.extracted();
+    CameraServer.startAutomaticCapture("0", 0);}
 }
