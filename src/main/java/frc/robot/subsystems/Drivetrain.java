@@ -30,7 +30,7 @@ public class Drivetrain extends SubsystemBase
         input exponetial to essentially create a ramp on the motots as it will be less sensitve
         near the center of the drive stick and more sensitve the farther you push the joysticks
         */
-        drivetrain.arcadeDrive(-drivController.getRightX()*drivController.getRightX(), -drivController.getLeftY()*drivController.getLeftY());
+        drivetrain.arcadeDrive(-drivController.getRightX(), -drivController.getLeftY());
     }
 }
 //robot is driving

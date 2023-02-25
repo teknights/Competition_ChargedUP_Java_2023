@@ -47,7 +47,7 @@ public class RobotContainer {
     // Configure the trigger bindings
     configureBindings();
 //Calls drivetrain when nothing is using the driving motors for example during auto
-    drivetrain.setDefaultCommand(new RunCommand(() -> drivetrain.drive(-drivController.getLeftY(), drivController.getRightX()), drivetrain));
+    drivetrain.setDefaultCommand(new RunCommand(() -> drivetrain.drive(-drivController.getLeftY()*drivController.getLeftY(), drivController.getRightX()*drivController.getRightX()), drivetrain));
   }
 
   /**
