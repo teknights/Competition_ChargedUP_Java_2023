@@ -5,6 +5,7 @@
 package frc.robot;
 
 import frc.robot.Constants.OperatorConstants;
+import frc.robot.commands.ArmKickDeploy;
 import frc.robot.commands.Autos;
 import frc.robot.commands.ExampleCommand;
 import frc.robot.subsystems.Drivetrain;
@@ -49,7 +50,10 @@ public class RobotContainer {
     configureBindings();
 //Calls drivetrain when nothing is using the driving motors for example during auto
     drivetrain.setDefaultCommand(new RunCommand(() -> drivetrain.drive(-drivController.getLeftY()*drivController.getLeftY(), drivController.getRightX()*drivController.getRightX()), drivetrain));
-  }
+     //lB button
+     m_armController.leftBumper().onTrue(new ArmKickDeploy());
+     }
+  
 
   /**
    * Use this method to define your trigger->command mappings. Triggers can be created via the
