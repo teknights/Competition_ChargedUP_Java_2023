@@ -32,6 +32,7 @@ public class Robot extends TimedRobot {
     // autonomous chooser on the dashboard.
     m_robotContainer = new RobotContainer();
     m_ArmKick = new ArmKick();
+    System.out.println("Robot Init Completed");
   }
 
   /**
