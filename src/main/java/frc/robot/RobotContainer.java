@@ -6,6 +6,7 @@ package frc.robot;
 
 import frc.robot.Constants.OperatorConstants;
 import frc.robot.commands.ArmKickDeploy;
+import frc.robot.commands.ArmKickRetract;
 import frc.robot.commands.Autos;
 import frc.robot.commands.ExampleCommand;
 import frc.robot.subsystems.Drivetrain;
@@ -50,8 +51,10 @@ public class RobotContainer {
     configureBindings();
 //Calls drivetrain when nothing is using the driving motors for example during auto
     drivetrain.setDefaultCommand(new RunCommand(() -> drivetrain.drive(-drivController.getLeftY()*drivController.getLeftY(), drivController.getRightX()*drivController.getRightX()), drivetrain));
-     //lB button
+     //lB button Arm Controller pushes arm forward
      m_armController.leftBumper().onTrue(new ArmKickDeploy());
+     //RB Button Arm Controller retracts arm
+     m_armController.rightBumper().onTrue(new ArmKickRetract());
      }
   
 
