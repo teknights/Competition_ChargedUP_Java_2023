@@ -49,7 +49,7 @@ public class RobotContainer {
   public RobotContainer() {
     // Configure the trigger bindings
     configureBindings();
-//Calls drivetrain when nothing is using the driving motors for example during auto
+//Calls drivetrain when nothing is using the driving motors for example during auto this line is disregarded until drivetrain is unused again
     drivetrain.setDefaultCommand(new RunCommand(() -> drivetrain.drive(-drivController.getLeftY()*drivController.getLeftY(), drivController.getRightX()*drivController.getRightX()), drivetrain));
      //lB button Arm Controller pushes arm forward
      m_armController.leftBumper().onTrue(new ArmKickDeploy());
