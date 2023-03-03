@@ -20,7 +20,12 @@ public final class Constants {
   // Solenoids for ArmKick
 public static final int Arm_Kick_Deploy = 0;
 public static final int Arm_Kick_Retract = 1;
-//CAn IDs
+//Solenoids for Claw
+public static final int Left_Claw_Open = 2;
+public static final int Left_Claw_Close = 3;
+public static final int Right_Claw_Open = 4;
+public static final int Right_Claw_Close = 5;
+//Can IDs
   public static final int Left_Front_Motor_ID = 3;
   public static final int Left_Back_Motor_ID = 2;
   public static final int Right_Front_Motor_ID = 5;
