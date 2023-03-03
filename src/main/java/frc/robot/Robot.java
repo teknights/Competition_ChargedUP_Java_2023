@@ -9,6 +9,7 @@ import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import frc.robot.subsystems.ArmKick;
+import edu.wpi.first.cameraserver.*;
 
 /**
  * The VM is configured to automatically run this class, and to call the functions corresponding to
@@ -33,6 +34,7 @@ public class Robot extends TimedRobot {
     m_robotContainer = new RobotContainer();
     m_ArmKick = new ArmKick();
     System.out.println("Robot Init Completed");
+    CameraServer.startAutomaticCapture();
   }
 
   /**
