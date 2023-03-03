@@ -18,9 +18,7 @@ public class Claw extends SubsystemBase{
     */
     Left_Claw_Solenoid = new DoubleSolenoid(PneumaticsModuleType.CTREPCM, Constants.Left_Claw_Open, Constants.Left_Claw_Close);
     Right_Claw_Solenoid = new DoubleSolenoid(PneumaticsModuleType.CTREPCM, Constants.Right_Claw_Open, Constants.Right_Claw_Close);
-    
   }
-    
     
     public void Left_Claw_Open()
     {
@@ -32,7 +30,6 @@ public class Claw extends SubsystemBase{
         // This sets the left claw to move forward which results in the claw closing
         Left_Claw_Solenoid.set(Value.kForward);
     }
-    
     public void Right_Claw_Open()
     {
         // This sets the right claw to move in reverse which results in the claw opening
