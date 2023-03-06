@@ -32,5 +32,8 @@ public class Drivetrain extends SubsystemBase
         */
         drivetrain.arcadeDrive(-drivController.getRightX(), -drivController.getLeftY());
     }
+
+    public static void arcadeDrive(double rightY, double rightY2) {
+    }
 }
 //robot is driving

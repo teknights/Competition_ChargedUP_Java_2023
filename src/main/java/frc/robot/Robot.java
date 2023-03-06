@@ -8,6 +8,7 @@ import edu.wpi.first.cameraserver.CameraServer;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
+import frc.robot.subsystems.ArmDrive;
 import frc.robot.subsystems.ArmKick;
 import frc.robot.subsystems.Claw;
 import edu.wpi.first.cameraserver.*;
@@ -24,6 +25,7 @@ public class Robot extends TimedRobot {
   private RobotContainer m_robotContainer;
   public static ArmKick m_ArmKick = null;
   public static Claw m_Claw = null;
+  public static ArmDrive m_ArmDrive = null;
 
   /**
    * This function is run when the robot is first started up and should be used for any
@@ -37,6 +39,8 @@ public class Robot extends TimedRobot {
     m_robotContainer = new RobotContainer();
     m_ArmKick = new ArmKick();
     m_Claw = new Claw();
+    m_ArmDrive = new ArmDrive();
+    m_ArmDrive.Arm_Drive();
     CameraServer.startAutomaticCapture();
     System.out.println("Robot Init Completed");
   }

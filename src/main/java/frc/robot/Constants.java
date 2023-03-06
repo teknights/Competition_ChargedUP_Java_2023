@@ -30,4 +30,5 @@ public static final int Right_Claw_Close = 5;
   public static final int Left_Back_Motor_ID = 2;
   public static final int Right_Front_Motor_ID = 5;
   public static final int Right_Back_Motor_ID = 4;
+  public static final int Arm_Motor_ID = 6;
 }

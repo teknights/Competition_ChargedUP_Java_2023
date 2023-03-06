@@ -6,6 +6,8 @@ package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
+import frc.robot.Constants.OperatorConstants;
+import edu.wpi.first.wpilibj.XboxController;
 
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
@@ -16,16 +18,14 @@ import edu.wpi.first.wpilibj.motorcontrol.MotorControllerGroup;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class ArmDrive extends SubsystemBase {
-  /** Creates a new ArmDrive. */
-  static CANSparkMax ArmDriveMotor = new CANSparkMax(6, MotorType.kBrushed);   
-  public ArmDrive() 
-  {
-  
-  }
-public static void setPower(double power){
+  // Creates a new ArmDrive. 
+   CANSparkMax ArmDriveMotor = new CANSparkMax(6, MotorType.kBrushed);   
+
+public void Arm_Drive()
+{
   XboxController armController = new XboxController(1);
-  
-  ArmDriveMotor.set(armController.getRightY());
+  double ArmMotorSpeed = armController.getRightY();
+    ArmDriveMotor.set(0);
 }
   @Override
   public void periodic() {
