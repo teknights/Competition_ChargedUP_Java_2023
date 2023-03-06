@@ -27,7 +27,7 @@ public class Drivetrain extends SubsystemBase
         XboxController drivController = new XboxController(0);
         /*This takes the input from the controller and sets the motor to that value. You may
         notice that it is being multiplied by itself. This is on purpose as it makes the
-        input exponetial to essentially create a ramp on the motots as it will be less sensitve
+        input exponetial to essentially create a ramp on the motors as it will be less sensitve
         near the center of the drive stick and more sensitve the farther you push the joysticks
         */
         drivetrain.arcadeDrive(-drivController.getRightX(), -drivController.getLeftY());
