@@ -25,7 +25,7 @@ public class Robot extends TimedRobot {
   private RobotContainer m_robotContainer;
   public static ArmKick m_ArmKick = null;
   public static Claw m_Claw = null;
-  public static ArmDrive m_ArmDrive = null;
+  public static ArmDrive m_ArmDrive;
 
   /**
    * This function is run when the robot is first started up and should be used for any
