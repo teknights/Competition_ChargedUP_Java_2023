@@ -25,7 +25,6 @@ public class Robot extends TimedRobot {
   private RobotContainer m_robotContainer;
   public static ArmKick m_ArmKick = null;
   public static Claw m_Claw = null;
-  public static ArmDrive m_ArmDrive;
 
   /**
    * This function is run when the robot is first started up and should be used for any
@@ -36,8 +35,6 @@ public class Robot extends TimedRobot {
   public void robotInit() {
     // Instantiate our RobotContainer.  This will perform all our button bindings, and put our
     // autonomous chooser on the dashboard.
-    m_ArmDrive = new ArmDrive();
-    m_ArmDrive.Arm_Drive();
     m_robotContainer = new RobotContainer();
     m_ArmKick = new ArmKick();
     m_Claw = new Claw();
