@@ -1,18 +1,4 @@
 {
-  "HALProvider": {
-    "Other Devices": {
-      "Compressor[0]": {
-        "header": {
-          "open": true
-        }
-      },
-      "SPARK MAX [2]": {
-        "header": {
-          "open": true
-        }
-      }
-    }
-  },
   "NTProvider": {
     "types": {
       "/FMSInfo": "FMSInfo"
