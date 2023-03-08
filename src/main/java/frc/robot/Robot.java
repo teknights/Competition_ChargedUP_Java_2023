@@ -36,10 +36,10 @@ public class Robot extends TimedRobot {
   public void robotInit() {
     // Instantiate our RobotContainer.  This will perform all our button bindings, and put our
     // autonomous chooser on the dashboard.
+    m_ArmDrive = new ArmDrive();
     m_robotContainer = new RobotContainer();
     m_ArmKick = new ArmKick();
     m_Claw = new Claw();
-    m_ArmDrive = new ArmDrive();
     m_ArmDrive.Arm_Drive();
     CameraServer.startAutomaticCapture();
     System.out.println("Robot Init Completed");

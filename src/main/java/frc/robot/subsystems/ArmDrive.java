@@ -21,7 +21,7 @@ public class ArmDrive extends SubsystemBase {
   // Creates a new ArmDrive. 
    static CANSparkMax ArmDriveMotor = new CANSparkMax(6, MotorType.kBrushed);   
 
-public final void Arm_Drive()
+public void Arm_Drive()
 {
   XboxController armController = new XboxController(1);
   double ArmMotorSpeed = armController.getRightY();
