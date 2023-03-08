@@ -41,9 +41,7 @@ public class Robot extends TimedRobot {
     m_robotContainer = new RobotContainer();
     m_ArmKick = new ArmKick();
     m_Claw = new Claw();
-    m_ArmDrive.Arm_Drive();
     m_ArmDrive = new ArmDrive();
-
     CameraServer.startAutomaticCapture();
     System.out.println("Robot Init Completed");
   }
