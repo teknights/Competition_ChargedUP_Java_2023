@@ -25,7 +25,7 @@ public void Arm_Drive()
 {
   XboxController armController = new XboxController(1);
   double ArmMotorSpeed = armController.getRightY();
-    ArmDriveMotor.set(0);
+    ArmDriveMotor.set(armController.getLeftY());
 }
   @Override
   public void periodic() {
