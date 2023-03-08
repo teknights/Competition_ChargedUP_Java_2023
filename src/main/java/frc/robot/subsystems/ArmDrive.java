@@ -19,7 +19,7 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class ArmDrive extends SubsystemBase {
   // Creates a new ArmDrive. 
-   static CANSparkMax ArmDriveMotor = new CANSparkMax(6, MotorType.kBrushed);   
+   public static CANSparkMax ArmDriveMotor = new CANSparkMax(6, MotorType.kBrushed);   
 
 public void Arm_Drive()
 {
