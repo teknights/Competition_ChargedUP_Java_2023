@@ -21,6 +21,7 @@ import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import edu.wpi.first.wpilibj2.command.button.Trigger;
 import frc.robot.commands.*;
+import edu.wpi.first.wpilibj2.command.Commands;
 import frc.robot.*;
 
 /**
@@ -54,8 +55,8 @@ public class RobotContainer {
     configureBindings();
 //Calls drivetrain when nothing is using the driving motors for example during auto this line is disregarded until drivetrain is unused again
     drivetrain.setDefaultCommand(new RunCommand(() -> drivetrain.drive(-drivController.getLeftY()*drivController.getLeftY(), drivController.getRightX()*drivController.getRightX()), drivetrain));
-    m_ArmDrive.setDefaultCommand(Commands.runOnce(() -> ArmDrive.Arm_Drive(armController.getRightY()), m_ArmDrive.Arm_Drive()));
-    //lB button Arm Controller pushes arm forward
+    Robot.m_ArmDrive.setDefaultCommand(Commands.runOnce(() -> Robot.m_ArmDrive.Arm_Drive()));  
+      //lB button Arm Controller pushes arm forward
     m_armController.leftBumper().onTrue(new ArmKickDeploy());
      //RB Button Arm Controller retracts arm
     m_armController.rightBumper().onTrue(new ArmKickRetract());

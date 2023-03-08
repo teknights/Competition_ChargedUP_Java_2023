@@ -19,13 +19,13 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class ArmDrive extends SubsystemBase {
   // Creates a new ArmDrive. 
-   CANSparkMax ArmDriveMotor = new CANSparkMax(6, MotorType.kBrushed);   
+   static CANSparkMax ArmDriveMotor = new CANSparkMax(6, MotorType.kBrushed);   
 
-public void Arm_Drive()
+public final void Arm_Drive()
 {
   XboxController armController = new XboxController(1);
   double ArmMotorSpeed = armController.getRightY();
-    ArmDriveMotor.set(armController.getLeftY());
+    ArmDriveMotor.set(armController.getRightY());
 }
   @Override
   public void periodic() {
