@@ -54,7 +54,7 @@ public class RobotContainer {
     configureBindings();
 //Calls drivetrain when nothing is using the driving motors for example during auto this line is disregarded until drivetrain is unused again
     drivetrain.setDefaultCommand(new RunCommand(() -> drivetrain.drive(-drivController.getLeftY()*drivController.getLeftY(), drivController.getRightX()*drivController.getRightX()), drivetrain));
-    m_ArmDrive.setDefaultCommand(new RunCommand(() -> ArmDrive.Arm_Drive(armController.getRightY()), m_ArmDrive.Arm_Drive()));
+    m_ArmDrive.setDefaultCommand(Commands.runOnce(() -> ArmDrive.Arm_Drive(armController.getRightY()), m_ArmDrive.Arm_Drive()));
     //lB button Arm Controller pushes arm forward
     m_armController.leftBumper().onTrue(new ArmKickDeploy());
      //RB Button Arm Controller retracts arm
