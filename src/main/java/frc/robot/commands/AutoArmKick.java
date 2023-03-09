@@ -4,32 +4,23 @@
 
 package frc.robot.commands;
 
-import java.net.SocketTimeoutException;
-import java.util.TimerTask;
-
-import edu.wpi.first.wpilibj.Timer;
+import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.Robot;
-import frc.robot.subsystems.ArmDrive;
-import frc.robot.subsystems.*;
+import frc.robot.subsystems.ArmKick;
+import frc.robot.commands.ArmKickDeploy;
 
-public class AutoArmDrive extends CommandBase {
-     
-  /** Creates a new AutoArmDrive. */
-  public AutoArmDrive() {
+public class AutoArmKick extends CommandBase {
+  /** Creates a new AutoArmKick. */
+  public AutoArmKick() {
     // Use addRequirements() here to declare subsystem dependencies.
   }
 
   // Called when the command is initially scheduled.
   @Override
-  public void initialize() {
-     double RunTime;
-     RunTime = 1.5;
-    ArmDrive.ArmDriveMotor.set(0.15);
-    Timer.delay(RunTime);
-    ArmDrive.ArmDriveMotor.set(0);
-  }
-      
+  public void initialize() 
+  {
+    ArmKick.armkicksolenoid.set(Value.kForward);
+    }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
@@ -37,7 +28,9 @@ public class AutoArmDrive extends CommandBase {
 
   // Called once the command ends or is interrupted.
   @Override
-  public void end(boolean interrupted) {}
+  public void end(boolean interrupted) {
+    System.out.println("Arm Kick Solenoid Deployed");
+  }
 
   // Returns true when the command should end.
   @Override

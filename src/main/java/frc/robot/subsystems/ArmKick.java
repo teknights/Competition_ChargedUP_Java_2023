@@ -16,7 +16,7 @@ import frc.robot.Constants;
 
 public class ArmKick extends SubsystemBase {
   /** Creates a new ArmKick. */
-  DoubleSolenoid armkicksolenoid = null;
+  public static DoubleSolenoid armkicksolenoid = null;
   
   public ArmKick() 
   {

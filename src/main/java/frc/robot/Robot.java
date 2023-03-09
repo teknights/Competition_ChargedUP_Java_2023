@@ -8,6 +8,7 @@ import edu.wpi.first.cameraserver.CameraServer;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
+import frc.robot.commands.Auto_Sequential_Command_Group;
 import frc.robot.subsystems.ArmDrive;
 import frc.robot.subsystems.ArmKick;
 import frc.robot.subsystems.Claw;
@@ -60,7 +61,10 @@ public class Robot extends TimedRobot {
 
   /** This function is called once each time the robot enters Disabled mode. */
   @Override
-  public void disabledInit() {}
+  public void disabledInit() 
+  {
+    System.out.println("Robot Disabled");
+  }
 
   @Override
   public void disabledPeriodic() {}
@@ -69,6 +73,7 @@ public class Robot extends TimedRobot {
   @Override
   public void autonomousInit() {
     m_autonomousCommand = m_robotContainer.getAutonomousCommand();
+    new Auto_Sequential_Command_Group();
 
     // schedule the autonomous command (example)
     if (m_autonomousCommand != null) {
