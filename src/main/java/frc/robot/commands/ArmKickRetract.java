@@ -14,8 +14,11 @@ import frc.robot.subsystems.ArmKick;
 public class ArmKickRetract extends InstantCommand {
   public ArmKickRetract() {
     super();
+    /* super eliminates the confusion between superclasses and subclasses 
+    that have methods with the same or similar names. */
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
+    //this requires the armkick subsystem
     requires(Robot.m_ArmKick);
 }
 
@@ -25,6 +28,7 @@ private void requires(ArmKick m_ArmKick) {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
+    //this retracts the ArmKick Solenoid
     Robot.m_ArmKick.RetractArmKick();
 
   }

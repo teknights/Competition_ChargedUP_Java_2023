@@ -16,6 +16,7 @@ public class ArmKickDeploy extends InstantCommand {
     super();
        // Use requires() here to declare subsystem dependencies
        // eg. requires(chassis);
+       //this command requires the ArmKick subsystem to execute the command
       requires(Robot.m_ArmKick);
   }
 

@@ -27,10 +27,12 @@ public class ArmKick extends SubsystemBase {
   
     public void DeployArmKick()
     {
+      //deploys armkicksolenoid
     armkicksolenoid.set(Value.kForward);
     }
     public void RetractArmKick()
     {
+      //retracts armkicksolenoid
     armkicksolenoid.set(Value.kReverse);
     }
 

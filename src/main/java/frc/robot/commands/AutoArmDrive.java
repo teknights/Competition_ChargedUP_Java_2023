@@ -24,7 +24,9 @@ public class AutoArmDrive extends CommandBase {
   @Override
   public void initialize() {
      double RunTime;
+     //RunTime is the number of seconds that it runs for
      RunTime = 1.5;
+     //Arm motor is set to 15% power for 1.5 seconds then sets motor power to zero
     ArmDrive.ArmDriveMotor.set(0.15);
     Timer.delay(RunTime);
     ArmDrive.ArmDriveMotor.set(0);

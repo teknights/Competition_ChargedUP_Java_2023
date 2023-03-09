@@ -19,6 +19,7 @@ public class AutoArmKick extends CommandBase {
   @Override
   public void initialize() 
   {
+    //deploys armkick Solenoid
     ArmKick.armkicksolenoid.set(Value.kForward);
     }
 
