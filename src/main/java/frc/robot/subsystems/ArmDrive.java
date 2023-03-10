@@ -16,6 +16,8 @@ import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.motorcontrol.MotorController;
 import edu.wpi.first.wpilibj.motorcontrol.MotorControllerGroup;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.Constants;
+import edu.wpi.first.math.MathUtil;
 
 public class ArmDrive extends SubsystemBase {
   // Creates a new ArmDrive. 
@@ -24,8 +26,11 @@ public class ArmDrive extends SubsystemBase {
 public void Arm_Drive()
 {
   XboxController armController = new XboxController(1);
+   MathUtil.applyDeadband(armController.getRightY(), 0.5);
+
   double ArmMotorSpeed = armController.getRightY();
-    ArmDriveMotor.set(armController.getRightY());
+    ArmDriveMotor.set(-armController.getRightY());
+    System.out.println(-armController.getRightY());
 }
   @Override
   public void periodic() {
