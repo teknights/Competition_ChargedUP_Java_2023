@@ -16,6 +16,7 @@ import edu.wpi.first.cameraserver.CameraServer;
 import edu.wpi.first.wpilibj.ADIS16470_IMU;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.XboxController.Button;
+import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.RunCommand;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
@@ -54,6 +55,8 @@ public class RobotContainer {
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
+    //Hopefully this sends the Gyro Data to ShuffleBoard
+    Shuffleboard.getTab("IMU Sensor").add("Gyro", IMU);
     // Configure the trigger bindings
     configureBindings();
 //Calls drivetrain when nothing is using the driving motors for example during auto this line is disregarded until drivetrain is unused again
