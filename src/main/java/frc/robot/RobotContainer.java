@@ -13,6 +13,7 @@ import frc.robot.subsystems.ArmDrive;
 import frc.robot.subsystems.Drivetrain;
 import frc.robot.subsystems.ExampleSubsystem;
 import edu.wpi.first.cameraserver.CameraServer;
+import edu.wpi.first.wpilibj.ADIS16470_IMU;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.XboxController.Button;
 import edu.wpi.first.wpilibj2.command.Command;
@@ -34,6 +35,8 @@ public class RobotContainer {
   // The robot's subsystems and commands are defined here...
   private final ExampleSubsystem m_exampleSubsystem = new ExampleSubsystem();
   ArmDrive m_ArmDrive = new ArmDrive();
+  public static ADIS16470_IMU IMU = new ADIS16470_IMU();
+
   // Replace with CommandPS4Controller or CommandJoystick if needed
   //Driver Controller
   private final CommandXboxController m_driverController =
