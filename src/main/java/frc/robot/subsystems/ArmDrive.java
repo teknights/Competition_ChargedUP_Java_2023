@@ -9,6 +9,7 @@ import frc.robot.Constants;
 import frc.robot.Constants.OperatorConstants;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.XboxController;
+import frc.robot.RobotContainer;
 
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
@@ -26,11 +27,23 @@ public class ArmDrive extends SubsystemBase {
 
 public void Arm_Drive()
 {
+  double ArmSpeed;
   XboxController armController = new XboxController(1);
   double armrightydeadband = MathUtil.applyDeadband(armController.getRightY(), 0.3);
+  ArmSpeed = armrightydeadband;
     ArmDriveMotor.set(-armrightydeadband);
     System.out.println(-armrightydeadband);
-    
+    //this is used for diagnostic purposes
+
+    if (ArmSpeed != 0) {
+      if (RobotContainer.Maxheight.get()) {
+        if (ArmSpeed > 0){
+          ArmDriveMotor.set(0);
+
+        }
+
+      }
+    }
 }
   @Override
   public void periodic() {

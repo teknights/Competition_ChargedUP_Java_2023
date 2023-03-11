@@ -32,4 +32,9 @@ public static final int Right_Claw_Close = 5;
   public static final int Right_Back_Motor_ID = 4;
   public static final int Arm_Motor_ID = 6;
   public static int kArmControllerPort;
+  //Limit Switches DIO Channels
+  public static final int MaxHeightLimitChannel = 0;
+  public static final int FloorHitLimitChannel = 1;
+  public static final int FoldedINLimitChannel = 2;
 }
+

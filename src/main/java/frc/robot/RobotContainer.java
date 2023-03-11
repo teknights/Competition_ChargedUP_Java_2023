@@ -14,6 +14,7 @@ import frc.robot.subsystems.Drivetrain;
 import frc.robot.subsystems.ExampleSubsystem;
 import edu.wpi.first.cameraserver.CameraServer;
 import edu.wpi.first.wpilibj.ADIS16470_IMU;
+import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.XboxController.Button;
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
@@ -35,8 +36,14 @@ import frc.robot.*;
 public class RobotContainer {
   // The robot's subsystems and commands are defined here...
   private final ExampleSubsystem m_exampleSubsystem = new ExampleSubsystem();
+  //creates new armdrive
   ArmDrive m_ArmDrive = new ArmDrive();
+  //Creates newIMU Sensor
   public static ADIS16470_IMU IMU = new ADIS16470_IMU();
+  //Creates new limit switches
+public static DigitalInput Maxheight = new DigitalInput(Constants.MaxHeightLimitChannel);
+public DigitalInput FloorHit = new DigitalInput(Constants.FloorHitLimitChannel);
+public DigitalInput FoldedIN = new DigitalInput(Constants.FoldedINLimitChannel);
 
   // Replace with CommandPS4Controller or CommandJoystick if needed
   //Driver Controller
@@ -55,7 +62,7 @@ public class RobotContainer {
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
-    //Hopefully this sends the Gyro Data to ShuffleBoard
+    //this sends the Gyro Data to ShuffleBoard
     Shuffleboard.getTab("IMU Sensor").add("Gyro", IMU);
     // Configure the trigger bindings
     configureBindings();
