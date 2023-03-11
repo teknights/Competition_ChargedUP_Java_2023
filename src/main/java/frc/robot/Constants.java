@@ -14,8 +14,8 @@ package frc.robot;
  */
 public final class Constants {
   public static class OperatorConstants {
-    public static final int kDriverControllerPort = 1;
-    public static final int kArmControllerPort = 0;
+    public static final int kDriverControllerPort = 0;
+    public static final int kArmControllerPort = 1;
   }
   // Solenoids for ArmKick
 public static final int Arm_Kick_Deploy = 0;

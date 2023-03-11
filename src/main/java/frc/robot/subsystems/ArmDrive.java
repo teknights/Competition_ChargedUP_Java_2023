@@ -7,6 +7,7 @@ package frc.robot.subsystems;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 import frc.robot.Constants.OperatorConstants;
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.XboxController;
 
 import com.revrobotics.CANSparkMax;
@@ -26,11 +27,10 @@ public class ArmDrive extends SubsystemBase {
 public void Arm_Drive()
 {
   XboxController armController = new XboxController(1);
-   MathUtil.applyDeadband(armController.getRightY(), 0.5);
-
-  double ArmMotorSpeed = armController.getRightY();
-    ArmDriveMotor.set(-armController.getRightY());
-    System.out.println(-armController.getRightY());
+  double armrightydeadband = MathUtil.applyDeadband(armController.getRightY(), 0.3);
+    ArmDriveMotor.set(-armrightydeadband);
+    System.out.println(-armrightydeadband);
+    
 }
   @Override
   public void periodic() {
