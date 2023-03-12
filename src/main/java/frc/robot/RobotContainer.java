@@ -4,10 +4,12 @@
 
 package frc.robot;
 import com.revrobotics.AbsoluteEncoder;
-import com.revrobotics.SparkMaxRelativeEncoder;
+//import com.revrobotics.SparkMaxRelativeEncoder;
 import com.revrobotics.SparkMaxAbsoluteEncoder;
 import frc.robot.subsystems.ArmDrive;
 import com.revrobotics.SparkMaxPIDController;
+import com.revrobotics.SparkMaxAbsoluteEncoder.Type;
+
 import frc.robot.Constants.OperatorConstants;
 import frc.robot.subsystems.ArmDrive;
 import frc.robot.subsystems.Drivetrain;
@@ -15,6 +17,7 @@ import frc.robot.subsystems.ExampleSubsystem;
 import edu.wpi.first.cameraserver.CameraServer;
 import edu.wpi.first.wpilibj.ADIS16470_IMU;
 import edu.wpi.first.wpilibj.DigitalInput;
+import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.XboxController.Button;
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
@@ -45,9 +48,9 @@ public static DigitalInput Maxheight = new DigitalInput(Constants.MaxHeightLimit
 public DigitalInput FloorHit = new DigitalInput(Constants.FloorHitLimitChannel);
 public DigitalInput FoldedIN = new DigitalInput(Constants.FoldedINLimitChannel);
 //this is for the encoder and PID controller
-double m_encoder = ArmDrive.ArmDriveMotor.getEncoder(SparkMaxAbsoluteEncoder.Type.kDutyCycle, 1024);
-
-
+ public void AbsoluteEncoder() {
+  ArmDrive.ArmDriveMotor.getAbsoluteEncoder(Type.kDutyCycle);
+ }
   // Replace with CommandPS4Controller or CommandJoystick if needed
   //Driver Controller
   private final CommandXboxController m_driverController =
