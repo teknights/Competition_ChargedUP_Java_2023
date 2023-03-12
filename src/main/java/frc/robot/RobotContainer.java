@@ -50,6 +50,7 @@ public DigitalInput FoldedIN = new DigitalInput(Constants.FoldedINLimitChannel);
 //this is for the encoder and PID controller
  public void AbsoluteEncoder() {
   ArmDrive.ArmDriveMotor.getAbsoluteEncoder(Type.kDutyCycle);
+  
  }
   // Replace with CommandPS4Controller or CommandJoystick if needed
   //Driver Controller
