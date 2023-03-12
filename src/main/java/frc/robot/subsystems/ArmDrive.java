@@ -10,7 +10,6 @@ import frc.robot.Constants.OperatorConstants;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.XboxController;
 import frc.robot.RobotContainer;
-
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 import edu.wpi.first.wpilibj.XboxController;
@@ -23,7 +22,7 @@ import edu.wpi.first.math.MathUtil;
 
 public class ArmDrive extends SubsystemBase {
   // Creates a new ArmDrive. 
-   public static CANSparkMax ArmDriveMotor = new CANSparkMax(6, MotorType.kBrushed);   
+   public static CANSparkMax ArmDriveMotor = new CANSparkMax(6, MotorType.kBrushed); 
 
 public void Arm_Drive()
 {
@@ -32,18 +31,10 @@ public void Arm_Drive()
   double armrightydeadband = MathUtil.applyDeadband(armController.getRightY(), 0.3);
   ArmSpeed = armrightydeadband;
     ArmDriveMotor.set(-armrightydeadband);
-    System.out.println(-armrightydeadband);
+    //System.out.println(-armrightydeadband);
     //this is used for diagnostic purposes
 
-    if (ArmSpeed != 0) {
-      if (RobotContainer.Maxheight.get()) {
-        if (ArmSpeed > 0){
-          ArmDriveMotor.set(0);
-
-        }
-
-      }
-    }
+   
 }
   @Override
   public void periodic() {

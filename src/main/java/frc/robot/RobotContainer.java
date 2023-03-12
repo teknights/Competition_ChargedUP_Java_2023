@@ -3,12 +3,12 @@
 // the WPILib BSD license file in the root directory of this project.
 
 package frc.robot;
-
+import com.revrobotics.AbsoluteEncoder;
+import com.revrobotics.SparkMaxRelativeEncoder;
+import com.revrobotics.SparkMaxAbsoluteEncoder;
+import frc.robot.subsystems.ArmDrive;
+import com.revrobotics.SparkMaxPIDController;
 import frc.robot.Constants.OperatorConstants;
-import frc.robot.commands.ArmKickDeploy;
-import frc.robot.commands.ArmKickRetract;
-import frc.robot.commands.Autos;
-import frc.robot.commands.ExampleCommand;
 import frc.robot.subsystems.ArmDrive;
 import frc.robot.subsystems.Drivetrain;
 import frc.robot.subsystems.ExampleSubsystem;
@@ -44,6 +44,9 @@ public class RobotContainer {
 public static DigitalInput Maxheight = new DigitalInput(Constants.MaxHeightLimitChannel);
 public DigitalInput FloorHit = new DigitalInput(Constants.FloorHitLimitChannel);
 public DigitalInput FoldedIN = new DigitalInput(Constants.FoldedINLimitChannel);
+//this is for the encoder and PID controller
+double m_encoder = ArmDrive.ArmDriveMotor.getEncoder(SparkMaxAbsoluteEncoder.Type.kDutyCycle, 1024);
+
 
   // Replace with CommandPS4Controller or CommandJoystick if needed
   //Driver Controller
