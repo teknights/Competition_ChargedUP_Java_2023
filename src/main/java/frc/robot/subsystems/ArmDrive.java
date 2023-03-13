@@ -19,6 +19,7 @@ import edu.wpi.first.wpilibj.motorcontrol.MotorControllerGroup;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 import edu.wpi.first.math.MathUtil;
+import edu.wpi.first.math.controller.PIDController;
 
 public class ArmDrive extends SubsystemBase {
   // Creates a new ArmDrive. 
@@ -33,6 +34,13 @@ public void Arm_Drive()
     ArmDriveMotor.set(-armrightydeadband);
     //System.out.println(-armrightydeadband);
     //this is used for diagnostic purposes
+    //Kp is Proportional, Ki is Intergral, Kd is Derative
+    PIDController PIDcontroller = new PIDController(0.01, 0.0, 0.0);
+  }
+  public void moveToPosition(){
+    ArmDrive.ArmDriveMotor.set(ControlMode.PercentOutput, command);
+  }
+
 
    
 }
