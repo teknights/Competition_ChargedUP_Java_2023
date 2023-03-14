@@ -45,9 +45,9 @@ public void Arm_Drive()
     //Proportional
     double kP = 0.1; 
     //Integral
-    double kI = 0;
+    double kI = 1e-4;
     //Derivitave
-    double kD = 0; 
+    double kD = 1; 
     //limiter on the I term
     double kIz = 0; 
     //feed forward
