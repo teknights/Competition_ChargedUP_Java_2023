@@ -83,7 +83,6 @@ public DigitalInput FoldedIN = new DigitalInput(Constants.FoldedINLimitChannel);
     //RT button closes Claw
     m_armController.rightTrigger().onTrue(new Left_Claw_Close());
     m_armController.rightTrigger().onTrue(new Right_Claw_Close());
-    //gets Arm controller input to spin ArmDrive
     }
   
 

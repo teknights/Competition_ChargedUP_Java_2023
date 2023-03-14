@@ -9,6 +9,7 @@ import frc.robot.Constants;
 import frc.robot.Constants.OperatorConstants;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.XboxController;
+import edu.wpi.first.wpilibj.PS4Controller.Button;
 import frc.robot.RobotContainer;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
@@ -46,7 +47,8 @@ public void Arm_Drive()
   m_pid.setFeedbackDevice(m_enc);
   ArmSpeed = armrightydeadband;
     ArmDriveMotor.set(-armrightydeadband);
-    double rotations = m_enc.getPosition();
+    double defaultrotations = m_enc.getPosition();
+    double UpdatedRefrence;
     //Proportional
     double kP = 0.1; 
     //Integral
@@ -76,9 +78,9 @@ public void Arm_Drive()
         SmartDashboard.putNumber("Min Output", kMinOutput);
         SmartDashboard.putNumber("inital Rotations", 0);
 
-        m_pid.setReference(rotations, CANSparkMax.ControlType.kPosition);
+        
 
-        SmartDashboard.putNumber("SetPoint", rotations);
+        SmartDashboard.putNumber("SetPoint", defaultrotations);
         SmartDashboard.putNumber("ProcessVariable", m_enc.getPosition());
 
         /**
@@ -96,6 +98,14 @@ public void Arm_Drive()
      * GetVelocity() returns the velocity of the encoder in units of RPM
      */
     SmartDashboard.putNumber("Encoder Velocity", m_enc.getVelocity());
+
+    if(armController.getAButtonPressed()) {
+      UpdatedRefrence = m_enc.getPosition();
+      m_pid.setReference(UpdatedRefrence, CANSparkMax.ControlType.kPosition);
+      Timer.delay(0.175);
+    }
+
+        else{m_pid.setReference(defaultrotations, CANSparkMax.ControlType.kPosition);}    
 
 }
 
