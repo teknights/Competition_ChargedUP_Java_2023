@@ -40,7 +40,7 @@ public class Robot extends TimedRobot {
     m_ArmKick = new ArmKick();
     m_Claw = new Claw();
     new ArmDrive();
-        CameraServer.startAutomaticCapture();
+       // CameraServer.startAutomaticCapture();
     System.out.println("Robot Init Completed");
   }
 
