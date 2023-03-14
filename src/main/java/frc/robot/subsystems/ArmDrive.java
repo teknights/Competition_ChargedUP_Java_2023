@@ -20,30 +20,45 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 import edu.wpi.first.math.MathUtil;
 import edu.wpi.first.math.controller.PIDController;
+import com.revrobotics.CANSparkMax; 
+import com.revrobotics.CANSparkMaxLowLevel.MotorType; 
+import com.revrobotics.SparkMaxAbsoluteEncoder.*; 
+import com.revrobotics.SparkMaxPIDController; 
+import com.revrobotics.AbsoluteEncoder;
+
+
 
 public class ArmDrive extends SubsystemBase {
   // Creates a new ArmDrive. 
-   public static CANSparkMax ArmDriveMotor = new CANSparkMax(6, MotorType.kBrushed); 
+   public static CANSparkMax ArmDriveMotor = new CANSparkMax(6, MotorType.kBrushed);
+   public static AbsoluteEncoder m_enc = ArmDriveMotor.getAbsoluteEncoder(Type.kDutyCycle); 
+SparkMaxPIDController m_pid = ArmDriveMotor.getPIDController(); 
 
 public void Arm_Drive()
 {
   double ArmSpeed;
   XboxController armController = new XboxController(1);
   double armrightydeadband = MathUtil.applyDeadband(armController.getRightY(), 0.3);
+  m_pid.setFeedbackDevice(m_enc);
   ArmSpeed = armrightydeadband;
     ArmDriveMotor.set(-armrightydeadband);
-    //System.out.println(-armrightydeadband);
-    //this is used for diagnostic purposes
-    //Kp is Proportional, Ki is Intergral, Kd is Derative
-    PIDController PIDcontroller = new PIDController(0.01, 0.0, 0.0);
-  }
-  public void moveToPosition(){
-    ArmDrive.ArmDriveMotor.set(ControlMode.PercentOutput, command);
-  }
+    //Proportional
+    double kP = 0.1; 
+    //Integral
+    double kI = 0;
+    //Derivitave
+    double kD = 0; 
+    //limiter on the I term
+    double kIz = 0; 
+    //feed forward
+    double kFF = 0; 
+    double kMaxOutput = 0.25; 
+    double kMinOutput = -0.25;
+}
 
 
    
-}
+
   @Override
   public void periodic() {
     // This method will be called once per scheduler run

@@ -48,10 +48,6 @@ public static DigitalInput Maxheight = new DigitalInput(Constants.MaxHeightLimit
 public DigitalInput FloorHit = new DigitalInput(Constants.FloorHitLimitChannel);
 public DigitalInput FoldedIN = new DigitalInput(Constants.FoldedINLimitChannel);
 //this is for the encoder and PID controller
-public double kP, kI, kD, kIz, kFF, kMaxOutput, kMinOutput;
- public void AbsoluteEncoder() {
-  ArmDrive.ArmDriveMotor.getAbsoluteEncoder(Type.kDutyCycle);
-  }
   // Replace with CommandPS4Controller or CommandJoystick if needed
   //Driver Controller
   private final CommandXboxController m_driverController =
