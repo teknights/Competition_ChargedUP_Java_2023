@@ -18,6 +18,7 @@ import edu.wpi.first.cameraserver.CameraServer;
 import edu.wpi.first.wpilibj.ADIS16470_IMU;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Encoder;
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.XboxController.Button;
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
@@ -71,11 +72,22 @@ public DigitalInput FoldedIN = new DigitalInput(Constants.FoldedINLimitChannel);
     configureBindings();
 //Calls drivetrain when nothing is using the driving motors for example during auto this line is disregarded until drivetrain is unused again
     drivetrain.setDefaultCommand(new RunCommand(() -> drivetrain.drive(-drivController.getLeftY()*drivController.getLeftY(), drivController.getRightX()*drivController.getRightX()), drivetrain));
-    m_ArmDrive.setDefaultCommand(new RunCommand(() -> m_ArmDrive.Arm_Drive(),m_ArmDrive));  
-      //lB button Arm Controller pushes arm forward
-    m_armController.leftBumper().onTrue(new ArmKickDeploy());
+    m_ArmDrive.setDefaultCommand(new RunCommand(() -> m_ArmDrive.Arm_Drive(),m_ArmDrive)); 
+     //lB button Arm Controller pushes arm forward
+     m_armController.leftBumper().onTrue(new ArmKickDeploy());
      //RB Button Arm Controller retracts arm
     m_armController.rightBumper().onTrue(new ArmKickRetract());
+    //Limits arm deploy by encoder
+   /* if(ArmDrive.currentrotations > (0.2)) {
+      //lB button Arm Controller pushes arm forward
+    m_armController.leftBumper().onTrue(new ArmKickDeploy());
+    //RB Button Arm Controller retracts arm
+   m_armController.rightBumper().onTrue(new ArmKickRetract());   } 
+   else if (ArmDrive.currentrotations < 0.2 && m_armController.leftBumper().onTrue(null) != null || m_armController.leftBumper().onTrue(null) != null) {
+    System.out.println("ARM MUST BE RAISED HIGHER BEFORE KICKING THE TOWER!");
+    Timer.delay(5);
+   }
+      */
 
     //LT button opens claw
     m_armController.leftTrigger().onTrue(new Left_Claw_Open());

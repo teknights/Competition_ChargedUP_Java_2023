@@ -38,6 +38,7 @@ public class ArmDrive extends SubsystemBase {
    public static CANSparkMax ArmDriveMotor = new CANSparkMax(6, MotorType.kBrushed);
    public static AbsoluteEncoder m_enc = ArmDriveMotor.getAbsoluteEncoder(Type.kDutyCycle); 
 SparkMaxPIDController m_pid = ArmDriveMotor.getPIDController(); 
+public static double currentrotations;
 
 public void Arm_Drive()
 {
@@ -48,6 +49,7 @@ public void Arm_Drive()
   ArmSpeed = armrightydeadband;
     ArmDriveMotor.set(-armrightydeadband);
     double defaultrotations = m_enc.getPosition();
+    currentrotations = defaultrotations;
     double UpdatedRefrence;
     //Proportional
     double kP = 0.1; 
@@ -98,16 +100,26 @@ public void Arm_Drive()
      * GetVelocity() returns the velocity of the encoder in units of RPM
      */
     SmartDashboard.putNumber("Encoder Velocity", m_enc.getVelocity());
-
-    if(armController.getAButtonPressed()) {
+//this holds position of the arm when the A button is pressed
+   /* if(armController.getAButtonPressed()) {
       UpdatedRefrence = m_enc.getPosition();
       m_pid.setReference(UpdatedRefrence, CANSparkMax.ControlType.kPosition);
       Timer.delay(0.175);
     }
+        else{m_pid.setReference(defaultrotations, CANSparkMax.ControlType.kPosition);}   
+        //this sets the top limit of the arm 
+    if(currentrotations >= (0.43)) {
+      m_pid.setReference(0.42, CANSparkMax.ControlType.kPosition);
+      System.out.println("MAX HEIGHT LIMIT REACHED!");
+      Timer.delay(3);
+    }
+    if(currentrotations <= (0.1)) {
+      m_pid.setReference(0.11, CANSparkMax.ControlType.kPosition);
+      System.out.println("MINIMUM HEIGHT LIMIT REACHED!"); }
+      Timer.delay(3);
+      */
+    }
 
-        else{m_pid.setReference(defaultrotations, CANSparkMax.ControlType.kPosition);}    
-
-}
 
 
    
