@@ -2,47 +2,36 @@
 // Open Source Software; you can modify and/or share it under the terms of
 // the WPILib BSD license file in the root directory of this project.
 
-package frc.robot.subsystems;
+package frc.robot.commands;
 
-import edu.wpi.first.wpilibj2.command.SubsystemBase;
-import frc.robot.Constants;
-import frc.robot.Constants.OperatorConstants;
+import com.revrobotics.AbsoluteEncoder;
+import com.revrobotics.CANSparkMax;
+import com.revrobotics.SparkMaxPIDController;
+import com.revrobotics.CANSparkMaxLowLevel.MotorType;
+import com.revrobotics.SparkMaxAbsoluteEncoder.Type;
+
+import edu.wpi.first.math.MathUtil;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.XboxController;
-import edu.wpi.first.wpilibj.PS4Controller.Button;
-import frc.robot.RobotContainer;
-import com.revrobotics.CANSparkMax;
-import com.revrobotics.CANSparkMaxLowLevel.MotorType;
-import edu.wpi.first.wpilibj.XboxController;
-import edu.wpi.first.wpilibj.drive.DifferentialDrive;
-import edu.wpi.first.wpilibj.motorcontrol.MotorController;
-import edu.wpi.first.wpilibj.motorcontrol.MotorControllerGroup;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import edu.wpi.first.wpilibj2.command.SubsystemBase;
-import frc.robot.Constants;
-import edu.wpi.first.math.MathUtil;
-import edu.wpi.first.math.controller.PIDController;
-import com.revrobotics.CANSparkMax; 
-import com.revrobotics.CANSparkMaxLowLevel.MotorType; 
-import com.revrobotics.SparkMaxAbsoluteEncoder.*; 
-import com.revrobotics.SparkMaxPIDController; 
-import com.revrobotics.AbsoluteEncoder;
-import com.revrobotics.CANSparkMax.ControlType.*;
-//remember * is a wildcard that inports everthing to do with what it's calling just not one specific things but everything to do with what its calling
+import edu.wpi.first.wpilibj2.command.InstantCommand;
 
+// NOTE:  Consider using this command inline, rather than writing a subclass.  For more
+// information, see:
+// https://docs.wpilib.org/en/stable/docs/software/commandbased/convenience-features.html
+public class ArmHold extends InstantCommand {
+  public ArmHold() {
+    // Use addRequirements() here to declare subsystem dependencies.
+  }
 
-
-
-public class ArmDrive extends SubsystemBase {
-  // Creates a new ArmDrive. 
-   public static CANSparkMax ArmDriveMotor = new CANSparkMax(6, MotorType.kBrushed);
-   public static AbsoluteEncoder m_enc = ArmDriveMotor.getAbsoluteEncoder(Type.kDutyCycle); 
-SparkMaxPIDController m_pid = ArmDriveMotor.getPIDController(); 
-public static double currentrotations;
-
-public void Arm_Drive()
-{
-  double ArmSpeed;
+  // Called when the command is initially scheduled.
+  @Override
+  public void initialize() {
+    CANSparkMax ArmDriveMotor = new CANSparkMax(6, MotorType.kBrushed);
+    AbsoluteEncoder m_enc = ArmDriveMotor.getAbsoluteEncoder(Type.kDutyCycle); 
+ SparkMaxPIDController m_pid = ArmDriveMotor.getPIDController(); 
+ double currentrotations;
+    double ArmSpeed;
   XboxController armController = new XboxController(1);
   double armrightydeadband = MathUtil.applyDeadband(armController.getRightY(), 0.3);
   m_pid.setFeedbackDevice(m_enc);
@@ -61,8 +50,8 @@ public void Arm_Drive()
     double kIz = 0; 
     //feed forward
     double kFF = 0; 
-    double kMaxOutput = 0.25; 
-    double kMinOutput = -0.25;
+    double kMaxOutput = 0.5; 
+    double kMinOutput = -0.5;
     // set PID coefficients
     m_pid.setP(kP);
     m_pid.setI(kI);
@@ -104,25 +93,17 @@ public void Arm_Drive()
    if(armController.getAButton()) {
       UpdatedRefrence = m_enc.getPosition();
       m_pid.setReference(UpdatedRefrence, CANSparkMax.ControlType.kPosition);
+      
     }
-
-       // else{m_pid.setReference(defaultrotations, CANSparkMax.ControlType.kPosition);}   
+        else{m_pid.setReference(defaultrotations, CANSparkMax.ControlType.kPosition);}   
         //this sets the top limit of the arm 
-  /*  if(currentrotations >= (0.43)) {
+   /*/ if(currentrotations >= (0.43)) {
       m_pid.setReference(0.42, CANSparkMax.ControlType.kPosition);
     }
     if(currentrotations <= (0.1)) {
       m_pid.setReference(0.11, CANSparkMax.ControlType.kPosition);
    
-    }  */
-  }
-
-
-
-   
-
-  @Override
-  public void periodic() {
-    // This method will be called once per scheduler run
+    }*/
+    
   }
 }

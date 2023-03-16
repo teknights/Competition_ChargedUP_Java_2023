@@ -73,21 +73,21 @@ public DigitalInput FoldedIN = new DigitalInput(Constants.FoldedINLimitChannel);
 //Calls drivetrain when nothing is using the driving motors for example during auto this line is disregarded until drivetrain is unused again
     drivetrain.setDefaultCommand(new RunCommand(() -> drivetrain.drive(-drivController.getLeftY()*drivController.getLeftY(), drivController.getRightX()*drivController.getRightX()), drivetrain));
     m_ArmDrive.setDefaultCommand(new RunCommand(() -> m_ArmDrive.Arm_Drive(),m_ArmDrive)); 
+    //ArmDrive.setDefaultCommand(new RunCommand(() -> new ArmHold()));
      //lB button Arm Controller pushes arm forward
      m_armController.leftBumper().onTrue(new ArmKickDeploy());
      //RB Button Arm Controller retracts arm
     m_armController.rightBumper().onTrue(new ArmKickRetract());
+    //new ArmHold();
+
     //Limits arm deploy by encoder
-   /* if(ArmDrive.currentrotations > (0.2)) {
+   /*if(ArmDrive.currentrotations > (0.2)) {
       //lB button Arm Controller pushes arm forward
     m_armController.leftBumper().onTrue(new ArmKickDeploy());
     //RB Button Arm Controller retracts arm
-   m_armController.rightBumper().onTrue(new ArmKickRetract());   } 
-   else if (ArmDrive.currentrotations < 0.2 && m_armController.leftBumper().onTrue(null) != null || m_armController.leftBumper().onTrue(null) != null) {
-    System.out.println("ARM MUST BE RAISED HIGHER BEFORE KICKING THE TOWER!");
-    Timer.delay(5);
-   }
-      */
+   m_armController.rightBumper().onTrue(new ArmKickRetract());   } */
+   
+      
 
     //LT button opens claw
     m_armController.leftTrigger().onTrue(new Left_Claw_Open());
