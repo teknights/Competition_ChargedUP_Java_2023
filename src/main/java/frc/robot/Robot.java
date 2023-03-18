@@ -122,15 +122,15 @@ public class Robot extends TimedRobot {
 
   void extracted() {
   }
-  //CameraServer server;
+  CameraServer server;
 
   
- //public CameraServer getServer() {
-   // return server;
- // }
+public CameraServer getServer() {
+   return server;
+  }
 
- // public void setServer(CameraServer server) {
- //   this.server = server;
- // }
+  public void setServer(CameraServer server) {
+    this.server = server;
+  }
 
 }
