@@ -78,8 +78,8 @@ public DigitalInput FoldedIN = new DigitalInput(Constants.FoldedINLimitChannel);
 
     // Configure the trigger bindings
     configureBindings();
-//Calls drivetrain when nothing is using the driving motors for example during auto this line is disregarded until drivetrain is unused again
-    drivetrain.setDefaultCommand(new RunCommand(() -> drivetrain.drive(-drivController.getLeftY()*drivController.getLeftY(), drivController.getRightX()*drivController.getRightX()), drivetrain));
+//Calls drivetrain when nothing is using the driving motors for example during auto this line is disregarded until drivetrain is unused again and sets drivtrain to roughly 70% power
+    drivetrain.setDefaultCommand(new RunCommand(() -> drivetrain.drive(((-drivController.getLeftY()*drivController.getLeftY())/1.4), ((drivController.getRightX()*drivController.getRightX())/1.4)), drivetrain));
     m_ArmDrive.setDefaultCommand(new RunCommand(() -> m_ArmDrive.Arm_Drive(),m_ArmDrive)); 
     //ArmDrive.setDefaultCommand(new RunCommand(() -> new ArmHold()));
      //lB button Arm Controller pushes arm forward
