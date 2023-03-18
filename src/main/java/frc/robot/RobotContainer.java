@@ -22,6 +22,7 @@ import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.XboxController.Button;
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.RunCommand;
 import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
@@ -62,12 +63,19 @@ public DigitalInput FoldedIN = new DigitalInput(Constants.FoldedINLimitChannel);
 
     XboxController armController = new XboxController(OperatorConstants.kArmControllerPort);
     
+
+
+
+    
     
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
     //this sends the Gyro Data to ShuffleBoard
     Shuffleboard.getTab("IMU Sensor").add("Gyro", IMU);
+    ArmDrive.m_enc.setPositionConversionFactor(10000);
+    SmartDashboard.putNumber("Encoder Position", ArmDrive.m_enc.getPosition());
+
     // Configure the trigger bindings
     configureBindings();
 //Calls drivetrain when nothing is using the driving motors for example during auto this line is disregarded until drivetrain is unused again

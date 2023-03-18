@@ -27,102 +27,86 @@ import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 import com.revrobotics.SparkMaxAbsoluteEncoder.*; 
 import com.revrobotics.SparkMaxPIDController; 
 import com.revrobotics.AbsoluteEncoder;
+import com.revrobotics.CANSparkMax.ControlType;
 import com.revrobotics.CANSparkMax.ControlType.*;
 //remember * is a wildcard that inports everthing to do with what it's calling just not one specific things but everything to do with what its calling
 
 
 
 
-public class ArmDrive extends SubsystemBase {
+public class ArmDrive extends SubsystemBase implements PIDOutput {
   // Creates a new ArmDrive. 
    public static CANSparkMax ArmDriveMotor = new CANSparkMax(6, MotorType.kBrushed);
    public static AbsoluteEncoder m_enc = ArmDriveMotor.getAbsoluteEncoder(Type.kDutyCycle); 
-SparkMaxPIDController m_pid = ArmDriveMotor.getPIDController(); 
+public SparkMaxPIDController m_pid = ArmDriveMotor.getPIDController();
+
 public static double currentrotations;
+public static double angle = 45;
+
+private final double Kp = 0.3;
+private final double Ki = 0;
+private final double Kd = 0;
+
 
 public void Arm_Drive()
 {
-  double ArmSpeed;
+ // CANSparkMax ArmDriveMotor = new CANSparkMax(6, MotorType.kBrushed);
+   AbsoluteEncoder m_enc = ArmDriveMotor.getAbsoluteEncoder(Type.kDutyCycle); 
+ SparkMaxPIDController m_pid = ArmDriveMotor.getPIDController();
   XboxController armController = new XboxController(1);
-  double armrightydeadband = MathUtil.applyDeadband(armController.getRightY(), 0.3);
-  m_pid.setFeedbackDevice(m_enc);
-  ArmSpeed = armrightydeadband;
+  double armrightydeadband = (MathUtil.applyDeadband(armController.getRightY(), 0.3) / 2.15);
     ArmDriveMotor.set(-armrightydeadband);
-    double defaultrotations = m_enc.getPosition();
-    currentrotations = defaultrotations;
-    double UpdatedRefrence;
-    //Proportional
-    double kP = 0.1; 
-    //Integral
-    double kI = 1e-4;
-    //Derivitave
-    double kD = 1; 
-    //limiter on the I term
-    double kIz = 0; 
-    //feed forward
-    double kFF = 0; 
-    double kMaxOutput = 0.25; 
-    double kMinOutput = -0.25;
-    // set PID coefficients
-    m_pid.setP(kP);
-    m_pid.setI(kI);
-    m_pid.setD(kD);
-    m_pid.setIZone(kIz);
-    m_pid.setFF(kFF);
-    m_pid.setOutputRange(kMinOutput, kMaxOutput);
-        // display PID coefficients on SmartDashboard
-        SmartDashboard.putNumber("P Gain", kP);
-        SmartDashboard.putNumber("I Gain", kI);
-        SmartDashboard.putNumber("D Gain", kD);
-        SmartDashboard.putNumber("I Zone", kIz);
-        SmartDashboard.putNumber("Feed Forward", kFF);
-        SmartDashboard.putNumber("Max Output", kMaxOutput);
-        SmartDashboard.putNumber("Min Output", kMinOutput);
-        SmartDashboard.putNumber("inital Rotations", 0);
+    m_pid.setFeedbackDevice(m_enc);
+    /*/
+    m_pid.enableContinuousInput(0, 90); 
+    MathUtil.clamp(m_pid.calculate(m_enc.getPosition(), angle), -0.5, 0.5);
+    m_pid.setTolerance(2);
+    
+    */
 
-        
-
-        SmartDashboard.putNumber("SetPoint", defaultrotations);
-        SmartDashboard.putNumber("ProcessVariable", m_enc.getPosition());
-
-        /**
-     * Encoder position is read from a RelativeEncoder object by calling the
-     * GetPosition() method.
-     * 
-     * GetPosition() returns the position of the encoder in units of revolutions
-     */
-    SmartDashboard.putNumber("Encoder Position", m_enc.getPosition());
-
-    /**
-     * Encoder velocity is read from a RelativeEncoder object by calling the
-     * GetVelocity() method.
-     * 
-     * GetVelocity() returns the velocity of the encoder in units of RPM
-     */
-    SmartDashboard.putNumber("Encoder Velocity", m_enc.getVelocity());
-//this holds position of the arm when the A button is pressed
-   if(armController.getAButton()) {
-      UpdatedRefrence = m_enc.getPosition();
-      m_pid.setReference(UpdatedRefrence, CANSparkMax.ControlType.kPosition);
-    }
-
-       // else{m_pid.setReference(defaultrotations, CANSparkMax.ControlType.kPosition);}   
-        //this sets the top limit of the arm 
-  /*  if(currentrotations >= (0.43)) {
-      m_pid.setReference(0.42, CANSparkMax.ControlType.kPosition);
-    }
-    if(currentrotations <= (0.1)) {
-      m_pid.setReference(0.11, CANSparkMax.ControlType.kPosition);
-   
-    }  */
   }
 
+public void rotateDegrees(){
+  /*
+  m_pid.reset();
+  m_pid.setPID(Kp, Ki, Kd);
+  m_pid.setSetpoint(angle);
+  m_pid.calculate(angle);
+  */
+}
+
+public void set(double rightvalue) {
+ArmDriveMotor.set(rightvalue);
 
 
-   
+
+}
 
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
+    m_enc.setPositionConversionFactor(10000);
+    SmartDashboard.putNumber("Encoder Position", m_enc.getPosition());
+
   }
+
+
+
+
+
+  @Override
+  public void pidWrite(double Output) 
+  {
+    set(Output);
+    // TODO Auto-generated method stub
+
+    
+  }
+
+
+
+
+
+  
+  
 }
