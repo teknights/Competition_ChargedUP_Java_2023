@@ -43,7 +43,7 @@ public class Robot extends TimedRobot {
     m_ArmKick = new ArmKick();
     m_Claw = new Claw();
     m_ArmDrive = new ArmDrive();
-       CameraServer.startAutomaticCapture();
+    CameraServer.startAutomaticCapture();
     System.out.println("Robot Init Completed");
   }
 
@@ -122,16 +122,15 @@ public class Robot extends TimedRobot {
 
   void extracted() {
   }
-  CameraServer server;
-  CvSink cvSink = CameraServer.getVideo();
-  CvSource outputStream = CameraServer.putVideo("Blur", 640, 480);
-  
-  public CameraServer getServer() {
-    return server;
-  }
+  //CameraServer server;
 
-  public void setServer(CameraServer server) {
-    this.server = server;
-  }
+  
+ //public CameraServer getServer() {
+   // return server;
+ // }
+
+ // public void setServer(CameraServer server) {
+ //   this.server = server;
+ // }
 
 }

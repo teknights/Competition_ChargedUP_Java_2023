@@ -139,5 +139,5 @@ public DigitalInput FoldedIN = new DigitalInput(Constants.FoldedINLimitChannel);
    * @param robot TODO*/
   public void simulationPeriodicInit(Robot robot) {
      robot.extracted();
-    CameraServer.startAutomaticCapture("0", 0);}
+    }
 }
