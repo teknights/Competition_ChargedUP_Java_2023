@@ -66,7 +66,7 @@ public void Arm_Drive()
 
   }
 
-public void rotateDegrees(){
+public void rotateDegrees(double angle){
   /*
   m_pid.reset();
   m_pid.setPID(Kp, Ki, Kd);
