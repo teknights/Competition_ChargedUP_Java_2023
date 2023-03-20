@@ -13,8 +13,8 @@ public class Claw extends SubsystemBase{
     
     public Claw() 
   {
-    /* This creates a new doubleSolenoid for the left and right sides of the claw sets them to the only pnematics controller
-    It also takes the input of the ports on the pnematics module and grabes the int value from constants
+    /* This creates a new doubleSolenoid for the left and right sides of the claw sets them to the only pneumatics controller
+    It also takes the input of the ports on the pneumatics module and grabs the int value from constants
     */
     Left_Claw_Solenoid = new DoubleSolenoid(PneumaticsModuleType.CTREPCM, Constants.Left_Claw_Open, Constants.Left_Claw_Close);
     Right_Claw_Solenoid = new DoubleSolenoid(PneumaticsModuleType.CTREPCM, Constants.Right_Claw_Open, Constants.Right_Claw_Close);

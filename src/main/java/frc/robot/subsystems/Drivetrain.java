@@ -11,14 +11,14 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class Drivetrain extends SubsystemBase
 {
-    CANSparkMax left_front = new CANSparkMax(3, MotorType.kBrushed);
-    CANSparkMax left_back = new CANSparkMax(2, MotorType.kBrushed);
-    CANSparkMax right_front = new CANSparkMax(5, MotorType.kBrushed);
-    CANSparkMax right_back = new CANSparkMax(4, MotorType.kBrushed);
+    static CANSparkMax left_front = new CANSparkMax(3, MotorType.kBrushed);
+    static CANSparkMax left_back = new CANSparkMax(2, MotorType.kBrushed);
+    static CANSparkMax right_front = new CANSparkMax(5, MotorType.kBrushed);
+    static CANSparkMax right_back = new CANSparkMax(4, MotorType.kBrushed);
 
-    DifferentialDrive drivetrain = new DifferentialDrive
+     DifferentialDrive drivetrain = new DifferentialDrive
     (
-        new MotorControllerGroup(left_front, left_back),
+      new MotorControllerGroup(left_front, left_back),
         new MotorControllerGroup(right_front, right_back)
     );
 
@@ -27,8 +27,8 @@ public class Drivetrain extends SubsystemBase
         XboxController drivController = new XboxController(0);
         /*This takes the input from the controller and sets the motor to that value. You may
         notice that it is being multiplied by itself. This is on purpose as it makes the
-        input exponetial to essentially create a ramp on the motors as it will be less sensitve
-        near the center of the drive stick and more sensitve the farther you push the joysticks
+        input exponential to essentially create a ramp on the motors as it will be less sensitive
+        near the center of the drive stick and more sensitive the farther you push the joysticks
         */
         drivetrain.arcadeDrive(((-drivController.getRightX())/1.2), ((-drivController.getLeftY())/1.2));
     }

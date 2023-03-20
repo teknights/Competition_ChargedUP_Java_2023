@@ -15,6 +15,7 @@ import edu.wpi.first.wpilibj.PS4Controller.Button;
 import frc.robot.RobotContainer.*;
 import frc.robot.commands.ArmKickDeploy;
 import frc.robot.commands.ArmKickRetract;
+import frc.robot.subsystems.Drivetrain;
 
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
@@ -34,7 +35,7 @@ import com.revrobotics.SparkMaxPIDController;
 import com.revrobotics.AbsoluteEncoder;
 import com.revrobotics.CANSparkMax.ControlType;
 import com.revrobotics.CANSparkMax.ControlType.*;
-//remember * is a wildcard that inports everthing to do with what it's calling just not one specific things but everything to do with what its calling
+//remember * is a wildcard that imports everything to do with what it's calling just not one specific things but everything to do with what its calling
 
 
 
@@ -84,7 +85,13 @@ public void Arm_Drive()
       // This stops the motor from any negative value when/if it hits the floor
       if (armrightydeadband < 0){
         ArmDriveMotor.set(0);
-        System.out.println("YOU HAVE HIT THE FLOOR!!! ARM MOTOR HAS BEEN PREVENTED FROM GOING ANY LOWER. PLEASE BRING ARM UP TO REGAIN FULL CONTROL!");
+        System.out.println("YOU HAVE HIT THE FLOOR!!! ARM MOTOR HAS BEEN PREVENTED FROM GOING ANY LOWER AND DRIVE HAS BEEN DISABLED!!! PLEASE BRING ARM UP TO REGAIN FULL CONTROL!");
+        Drivetrain.arcadeDrive(0,0); //This should set drive motors to 0 to prevent movement
+        Drivetrain.left_front.set(0);
+        Drivetrain.left_back.set(0);
+        Drivetrain.right_front.set(0);
+        Drivetrain.right_back.set(0);
+        
       }
       else{
           ArmDriveMotor.set(-armrightydeadband); //this is negative because the joysticks are inverted from the motor
