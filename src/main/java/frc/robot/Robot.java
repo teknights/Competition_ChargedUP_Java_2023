@@ -7,10 +7,12 @@ package frc.robot;
 import edu.wpi.first.cameraserver.CameraServer;
 import edu.wpi.first.cscore.CvSink;
 import edu.wpi.first.cscore.CvSource;
+import edu.wpi.first.wpilibj.AddressableLED;
+import edu.wpi.first.wpilibj.AddressableLEDBuffer;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
-import frc.robot.commands.Auto_Sequential_Command_Group1;
+import frc.robot.commands.Drive_Turn90_Drive_Group;
 import frc.robot.subsystems.ArmDrive;
 import frc.robot.subsystems.ArmKick;
 import frc.robot.subsystems.Claw;
@@ -43,6 +45,19 @@ public class Robot extends TimedRobot {
     m_ArmKick = new ArmKick();
     m_Claw = new Claw();
     CameraServer.startAutomaticCapture();
+    // PWM port 1;
+    // Must be a PWM header, not MXP or DIO
+    AddressableLED m_led = new AddressableLED(1);
+
+   // Reuse buffer
+    // Default to a length of 60, start empty output
+    // Length is expensive to set, so only set it once, then just update data
+   AddressableLEDBuffer m_ledBuffer = new AddressableLEDBuffer(60);
+    m_led.setLength(m_ledBuffer.getLength());
+
+    // Set the data
+    m_led.setData(m_ledBuffer);
+    m_led.start();
     System.out.println("Robot Init Completed");
   }
 
@@ -77,8 +92,13 @@ public class Robot extends TimedRobot {
   @Override
   public void autonomousInit() {
     m_autonomousCommand = m_robotContainer.getAutonomousCommand();
-    //runs the sequential command group that brings the arm up and kicks it forward
-    new Auto_Sequential_Command_Group1();
+    
+
+    // schedule the autonomous command (example)
+    if (m_autonomousCommand != null) {
+      m_autonomousCommand.schedule();
+    }
+    m_autonomousCommand = m_robotContainer.getAutonomousCommand();
 
     // schedule the autonomous command (example)
     if (m_autonomousCommand != null) {
@@ -88,7 +108,10 @@ public class Robot extends TimedRobot {
 
   /** This function is called periodically during autonomous. */
   @Override
-  public void autonomousPeriodic() {}
+  public void autonomousPeriodic() {
+  CommandScheduler.getInstance().run();
+
+  }
 
   @Override
   public void teleopInit() {
@@ -99,6 +122,7 @@ public class Robot extends TimedRobot {
     if (m_autonomousCommand != null) {
       m_autonomousCommand.cancel();
     }
+    
   }
 
   /** This function is called periodically during operator control. */

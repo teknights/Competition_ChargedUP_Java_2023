@@ -18,14 +18,11 @@ public class AutoArmKick extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() 
-  {
-    //deploys armkick Solenoid
-    ArmKick.armkicksolenoid.set(Value.kForward);
-    }
+  { }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
-  public void execute() {}
+  public void execute() {ArmKick.armkicksolenoid.set(Value.kForward);}
 
   // Called once the command ends or is interrupted.
   @Override
@@ -36,6 +33,7 @@ public class AutoArmKick extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
+    System.out.println("Arm Kick Solenoid Deployed");
     return false;
   }
 }

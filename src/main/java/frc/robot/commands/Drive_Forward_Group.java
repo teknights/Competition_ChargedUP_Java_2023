@@ -4,22 +4,18 @@
 
 package frc.robot.commands;
 
-import edu.wpi.first.wpilibj.Timer;
-import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
-import frc.robot.commands.*;
-import frc.robot.subsystems.Drivetrain;
 
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
 // information, see:
 // https://docs.wpilib.org/en/stable/docs/software/commandbased/convenience-features.html
-public class Auto_Sequential_Command_Group1 extends SequentialCommandGroup {
-  /** Creates a new Auto_Sequential_Command_Group. */
-  public Auto_Sequential_Command_Group1() {
+public class Drive_Forward_Group extends SequentialCommandGroup {
+  /** Creates a new Drive_Forward_Group. */
+  public Drive_Forward_Group() {
     // Add your commands in the addCommands() call, e.g.
     // addCommands(new FooCommand(), new BarCommand());
     addCommands();
     addCommands(new Gyro_Calibrate());
-    addCommands(new AutoDrive());
+    addCommands(new Drive_Forward());
   }
 }

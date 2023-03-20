@@ -23,6 +23,7 @@ import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.XboxController.Button;
 import edu.wpi.first.wpilibj.interfaces.Gyro;
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
+import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.RunCommand;
@@ -60,6 +61,7 @@ public class RobotContainer {
     new CommandXboxController(OperatorConstants.kArmControllerPort);
 
     XboxController armController = new XboxController(OperatorConstants.kArmControllerPort);
+    static SendableChooser<Command> m_chooser = new SendableChooser<>();
     
 
 
@@ -102,6 +104,15 @@ public class RobotContainer {
     //RT button closes Claw
     m_armController.rightTrigger().onTrue(new Left_Claw_Close());
     m_armController.rightTrigger().onTrue(new Right_Claw_Close());
+
+
+    //Autonomous command chooser
+    final Command m_SimpleDriveForward = new Drive_Forward_Group();
+    final Command m_DriveForwardTurn90DriveForward = new Drive_Turn90_Drive_Group();
+    
+    m_chooser.setDefaultOption("Drive_Forward_5Sec", m_SimpleDriveForward);
+    m_chooser.addOption("DriveForward_Turn90_DriveForward", m_DriveForwardTurn90DriveForward);
+    SmartDashboard.putData(m_chooser);
     }
   
 
@@ -131,7 +142,7 @@ public class RobotContainer {
    */
   public Command getAutonomousCommand() {
     // An example command will be run in autonomous
-    return Autos.exampleAuto(m_exampleSubsystem);
+    return RobotContainer.m_chooser.getSelected();
   }
 
   /** This function is called periodically whilst in simulation. 

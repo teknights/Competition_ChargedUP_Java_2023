@@ -4,17 +4,14 @@
 
 package frc.robot.commands;
 
-import java.lang.annotation.Target;
-
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.RobotContainer;
 import frc.robot.subsystems.Drivetrain;
 
-public class AutoDrive extends CommandBase {
-  double Target;
-  /** Creates a new AutoDrive. */
-  public AutoDrive() {
+public class Drive_Forward extends CommandBase {
+  /** Creates a new Drive_Forward. */
+  public Drive_Forward() {
     // Use addRequirements() here to declare subsystem dependencies.
   }
 
@@ -25,7 +22,7 @@ public class AutoDrive extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    Target = 0;
+    double Target = 0;
     if(RobotContainer.IMU.getAngle() !=Target){
       while(RobotContainer.IMU.getAngle() !=Target){
         Drivetrain.arcadeDrive(0.1, -0.1);
@@ -34,28 +31,15 @@ public class AutoDrive extends CommandBase {
     Drivetrain.arcadeDrive(-0.1, -0.1);
     Timer.delay(5);
     Drivetrain.arcadeDrive(0, 0);
-    Target = 90;
-    if(RobotContainer.IMU.getAngle() !=Target){
-      while(RobotContainer.IMU.getAngle() !=Target){
-        Drivetrain.arcadeDrive(0.1, -0.1);
-      }
     }
-    Drivetrain.arcadeDrive(-0.1, -0.1);
-    Timer.delay(5);
-    Drivetrain.arcadeDrive(0, 0);
-  }
 
   // Called once the command ends or is interrupted.
   @Override
-  public void end(boolean interrupted) {
-    Drivetrain.arcadeDrive(0, 0);
-  }
+  public void end(boolean interrupted) {}
 
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    
     return false;
-    
   }
 }
