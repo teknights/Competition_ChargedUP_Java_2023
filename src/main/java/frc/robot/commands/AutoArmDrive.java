@@ -30,7 +30,10 @@ public class AutoArmDrive extends CommandBase {
     ArmDrive.ArmDriveMotor.set(0.15);
     Timer.delay(RunTime);
     ArmDrive.ArmDriveMotor.set(0);
+    
+
   }
+  
       
 
   // Called every time the scheduler runs while the command is scheduled.
