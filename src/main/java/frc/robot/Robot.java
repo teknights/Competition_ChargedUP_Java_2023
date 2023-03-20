@@ -123,10 +123,11 @@ public class Robot extends TimedRobot {
   void extracted() {
   }
   CameraServer server;
-
+  CvSink cvSink = CameraServer.getVideo();
+  CvSource outputStream = CameraServer.putVideo("Blur", 640, 480);
   
-public CameraServer getServer() {
-   return server;
+  public CameraServer getServer() {
+    return server;
   }
 
   public void setServer(CameraServer server) {

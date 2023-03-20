@@ -46,9 +46,10 @@ public class RobotContainer {
   //Creates newIMU Sensor
   public static ADIS16470_IMU IMU = new ADIS16470_IMU();
   //Creates new limit switches
-public static DigitalInput Maxheight = new DigitalInput(Constants.MaxHeightLimitChannel);
-public DigitalInput FloorHit = new DigitalInput(Constants.FloorHitLimitChannel);
-public DigitalInput FoldedIN = new DigitalInput(Constants.FoldedINLimitChannel);
+public DigitalInput VerticalLimitFoldedIn = new DigitalInput(Constants.VerticalLimitFoldedIn);
+public DigitalInput VerticalLimitFoldedOut = new DigitalInput(Constants.VerticalLimitFoldedOut);
+public DigitalInput NoTowerLean = new DigitalInput(Constants.NoTowerLean);
+public DigitalInput FloorHit = new DigitalInput(Constants.FloorHit);
 //this is for the encoder and PID controller
   // Replace with CommandPS4Controller or CommandJoystick if needed
   //Driver Controller
@@ -58,7 +59,7 @@ public DigitalInput FoldedIN = new DigitalInput(Constants.FoldedINLimitChannel);
     Drivetrain drivetrain = new Drivetrain();
     XboxController drivController = new XboxController(OperatorConstants.kDriverControllerPort);
 //Arm Controller
-    public final CommandXboxController m_armController =
+    public final static CommandXboxController m_armController =
     new CommandXboxController(OperatorConstants.kArmControllerPort);
 
     XboxController armController = new XboxController(OperatorConstants.kArmControllerPort);
@@ -82,10 +83,10 @@ public DigitalInput FoldedIN = new DigitalInput(Constants.FoldedINLimitChannel);
     drivetrain.setDefaultCommand(new RunCommand(() -> drivetrain.drive(((-drivController.getLeftY()*drivController.getLeftY())/1.2), ((drivController.getRightX()*drivController.getRightX())/1.2)), drivetrain));
     m_ArmDrive.setDefaultCommand(new RunCommand(() -> m_ArmDrive.Arm_Drive(),m_ArmDrive)); 
     //ArmDrive.setDefaultCommand(new RunCommand(() -> new ArmHold()));
-     //lB button Arm Controller pushes arm forward
-     m_armController.leftBumper().onTrue(new ArmKickDeploy());
-     //RB Button Arm Controller retracts arm
-    m_armController.rightBumper().onTrue(new ArmKickRetract());
+     //RB button Arm Controller pushes arm forward
+    // m_armController.rightBumper().onTrue(new ArmKickDeploy());
+     //LB Button Arm Controller retracts arm
+   // m_armController.leftBumper().onTrue(new ArmKickRetract());
     //new ArmHold();
 
     //Limits arm deploy by encoder
