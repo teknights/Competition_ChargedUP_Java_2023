@@ -47,10 +47,6 @@ public class RobotContainer {
   //Creates newIMU Sensor
   public static ADIS16470_IMU IMU = new ADIS16470_IMU();
   //Creates new limit switches
-public DigitalInput VerticalLimitFoldedIn = new DigitalInput(Constants.VerticalLimitFoldedIn);
-public DigitalInput VerticalLimitFoldedOut = new DigitalInput(Constants.VerticalLimitFoldedOut);
-public DigitalInput NoTowerLean = new DigitalInput(Constants.NoTowerLean);
-public DigitalInput FloorHit = new DigitalInput(Constants.FloorHit);
 //this is for the encoder and PID controller
   // Replace with CommandPS4Controller or CommandJoystick if needed
   //Driver Controller

@@ -53,10 +53,10 @@ private final double Kp = 0.3;
 private final double Ki = 0;
 private final double Kd = 0;
 
-public DigitalInput VerticalLimitFoldedIn = new DigitalInput(Constants.VerticalLimitFoldedIn);
-public DigitalInput VerticalLimitFoldedOut = new DigitalInput(Constants.VerticalLimitFoldedOut);
-public DigitalInput NoTowerLean = new DigitalInput(Constants.NoTowerLean);
-public DigitalInput FloorHit = new DigitalInput(Constants.FloorHit);
+DigitalInput VerticalLimitFoldedIn = new DigitalInput(Constants.VerticalLimitFoldedIn);
+ DigitalInput VerticalLimitFoldedOut = new DigitalInput(Constants.VerticalLimitFoldedOut);
+DigitalInput NoTowerLean = new DigitalInput(Constants.NoTowerLean);
+ DigitalInput FloorHit = new DigitalInput(Constants.FloorHit);
 
 
 public void Arm_Drive()
