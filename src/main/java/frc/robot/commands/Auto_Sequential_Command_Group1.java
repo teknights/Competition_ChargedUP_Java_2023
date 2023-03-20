@@ -20,9 +20,6 @@ public class Auto_Sequential_Command_Group1 extends SequentialCommandGroup {
     // addCommands(new FooCommand(), new BarCommand());
     addCommands();
     addCommands(new Gyro_Calibrate());
-    Timer.delay(4);
-    addCommands(new AutoArmDrive());
-    addCommands(new AutoArmKick());
     addCommands(new AutoDrive());
   }
 }

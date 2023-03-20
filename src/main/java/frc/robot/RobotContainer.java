@@ -21,6 +21,7 @@ import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.XboxController.Button;
+import edu.wpi.first.wpilibj.interfaces.Gyro;
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
@@ -76,6 +77,7 @@ public DigitalInput FloorHit = new DigitalInput(Constants.FloorHit);
     Shuffleboard.getTab("IMU Sensor").add("Gyro", IMU);
     ArmDrive.m_enc.setPositionConversionFactor(10000);
     SmartDashboard.putNumber("Encoder Position", ArmDrive.m_enc.getPosition());
+    System.out.println(Math.round(IMU.getAngle()));
 
     // Configure the trigger bindings
     configureBindings();

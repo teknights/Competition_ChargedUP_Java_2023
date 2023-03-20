@@ -78,7 +78,7 @@ public class Robot extends TimedRobot {
   @Override
   public void autonomousInit() {
     m_autonomousCommand = m_robotContainer.getAutonomousCommand();
-    //runs the sequentail command group that brings the arm up and kicks it forward
+    //runs the sequential command group that brings the arm up and kicks it forward
     new Auto_Sequential_Command_Group1();
 
     // schedule the autonomous command (example)
