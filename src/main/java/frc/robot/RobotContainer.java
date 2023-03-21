@@ -85,11 +85,12 @@ public class RobotContainer {
     m_ArmDrive.setDefaultCommand(new RunCommand(() -> m_ArmDrive.Arm_Drive(),m_ArmDrive)); 
    // ArmDrive.setDefaultCommand(new RunCommand(() -> new ArmHold()));
      //RB button Arm Controller pushes arm forward
-    // m_armController.rightBumper().onTrue(new ArmKickDeploy());
+     m_armController.rightBumper().onTrue(new ArmKickDeploy());
+     
      //LB Button Arm Controller retracts arm
-   // m_armController.leftBumper().onTrue(new ArmKickRetract());
+   m_armController.leftBumper().onTrue(new ArmKickRetract());
     ArmHold m_ArmHold = new ArmHold();
-    System.out.println("Where's Perry?");
+    //System.out.println("Where's Perry?");
 
 
     //Limits arm deploy by encoder

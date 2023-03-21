@@ -115,7 +115,7 @@ public class ArmHold extends SubsystemBase {
  * GetPosition() returns the position of the encoder in units of revolutions
  */
 SmartDashboard.putNumber("Encoder Position", m_enc.getPosition());
-System.out.println("Encoder Position" + m_enc.getPosition());
+//System.out.println("Encoder Position" + m_enc.getPosition());
 
 /**
  * Encoder velocity is read from a RelativeEncoder object by calling the
@@ -124,7 +124,7 @@ System.out.println("Encoder Position" + m_enc.getPosition());
  * GetVelocity() returns the velocity of the encoder in units of RPM
  */
 SmartDashboard.putNumber("Encoder Velocity", m_enc.getVelocity());
-System.out.println("Encoder Velocity" + m_enc.getVelocity());
+//System.out.println("Encoder Velocity" + m_enc.getVelocity());
 }
   }
 

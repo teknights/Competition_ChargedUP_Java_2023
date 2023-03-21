@@ -67,10 +67,10 @@ public void Arm_Drive()
   XboxController armController = new XboxController(1);
   double armrightydeadband = (MathUtil.applyDeadband(armController.getRightY(), 0.3) / 2.15);
     //will need to remove line 69 to implement limit switches when they are ready
-  //ArmDriveMotor.set(-armrightydeadband);
+  ArmDriveMotor.set(-armrightydeadband);
 
   
-    if (NoTowerLean.get()) {
+    if (NoTowerLean.get()) { //System.out.println("TOWER CANNOT BE DEPLOYED OR RETRACTED. PLEASE RAISE THE HEIGHT OF THE ARM");
         // this makes sure the tower is up high enough to kick forward if True than it will not allow the arm to be kicked
         if(RobotContainer.m_armController.getHID().getRightBumper() || RobotContainer.m_armController.getHID().getLeftBumper()) {System.out.println("TOWER CANNOT BE DEPLOYED OR RETRACTED. PLEASE RAISE THE HEIGHT OF THE ARM");}
     } else {
@@ -82,46 +82,54 @@ public void Arm_Drive()
     }
  
     if (FloorHit.get()) {
+      System.out.println("YOU HAVE HIT THE FLOOR!!! ARM MOTOR HAS BEEN PREVENTED FROM GOING ANY LOWER AND DRIVE HAS BEEN DISABLED!!! PLEASE BRING ARM UP TO REGAIN FULL CONTROL!");
+
+      ArmDriveMotor.set(0);
       // This stops the motor from any negative value when/if it hits the floor
-      if (armrightydeadband < 0){
+       if (-armrightydeadband < 0){
         ArmDriveMotor.set(0);
-        //System.out.println("YOU HAVE HIT THE FLOOR!!! ARM MOTOR HAS BEEN PREVENTED FROM GOING ANY LOWER AND DRIVE HAS BEEN DISABLED!!! PLEASE BRING ARM UP TO REGAIN FULL CONTROL!");
-        Drivetrain.arcadeDrive(0,0); //This should set drive motors to 0 to prevent movement
-        Drivetrain.left_front.set(0);
-        Drivetrain.left_back.set(0);
-        Drivetrain.right_front.set(0);
-        Drivetrain.right_back.set(0);
+        
         
       }
-      else{
+      else if (-armrightydeadband > 0){
           ArmDriveMotor.set(-armrightydeadband); //this is negative because the joysticks are inverted from the motor
         }
-    } 
+     
+      }
     if(VerticalLimitFoldedIn.get()) {
         // We are going down but bottom limit is not tripped so go at commanded speed
         ArmDriveMotor.set(0);
-       //System.out.println("Maximum Height Reached!!! Motor will now fall until ot reaches a safe height!");
+       //System.out.println("Maximum Height Reached!!! Motor will now fall until it reaches a safe height!");
     }
       else{
         ArmDriveMotor.set(-armrightydeadband);
       }
+    
+      
       if(VerticalLimitFoldedOut.get()){
         ArmDriveMotor.set(0);
-       // System.out.println("Maximum Height Reached!!! Motor will now fall until ot reaches a safe height!");
+       System.out.println("Maximum Height Reached!!! Motor will now fall until it reaches a safe height!");
+        if(-armrightydeadband >0) {
+          ArmDriveMotor.set(0);
+        }
+        if(-armrightydeadband < 0) {
+          ArmDriveMotor.set(-armrightydeadband);
+        }
+      
       }
         else {
           ArmDriveMotor.set(-armrightydeadband);
         }
         
         m_pid.setFeedbackDevice(m_enc);
-
-    }
+      
+}
     
 
 
 
 
-    /*/
+    /*
     m_pid.enableContinuousInput(0, 90); 
     MathUtil.clamp(m_pid.calculate(m_enc.getPosition(), angle), -0.5, 0.5);
     m_pid.setTolerance(2);
