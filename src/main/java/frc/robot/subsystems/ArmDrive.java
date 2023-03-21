@@ -85,7 +85,7 @@ public void Arm_Drive()
       // This stops the motor from any negative value when/if it hits the floor
       if (armrightydeadband < 0){
         ArmDriveMotor.set(0);
-        System.out.println("YOU HAVE HIT THE FLOOR!!! ARM MOTOR HAS BEEN PREVENTED FROM GOING ANY LOWER AND DRIVE HAS BEEN DISABLED!!! PLEASE BRING ARM UP TO REGAIN FULL CONTROL!");
+        //System.out.println("YOU HAVE HIT THE FLOOR!!! ARM MOTOR HAS BEEN PREVENTED FROM GOING ANY LOWER AND DRIVE HAS BEEN DISABLED!!! PLEASE BRING ARM UP TO REGAIN FULL CONTROL!");
         Drivetrain.arcadeDrive(0,0); //This should set drive motors to 0 to prevent movement
         Drivetrain.left_front.set(0);
         Drivetrain.left_back.set(0);
@@ -100,14 +100,14 @@ public void Arm_Drive()
     if(VerticalLimitFoldedIn.get()) {
         // We are going down but bottom limit is not tripped so go at commanded speed
         ArmDriveMotor.set(0);
-        System.out.println("Maximum Height Reached!!! Motor will now fall until ot reaches a safe height!");
+       //System.out.println("Maximum Height Reached!!! Motor will now fall until ot reaches a safe height!");
     }
       else{
         ArmDriveMotor.set(-armrightydeadband);
       }
       if(VerticalLimitFoldedOut.get()){
         ArmDriveMotor.set(0);
-        System.out.println("Maximum Height Reached!!! Motor will now fall until ot reaches a safe height!");
+       // System.out.println("Maximum Height Reached!!! Motor will now fall until ot reaches a safe height!");
       }
         else {
           ArmDriveMotor.set(-armrightydeadband);
@@ -149,7 +149,6 @@ ArmDriveMotor.set(rightvalue);
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
-    m_enc.setPositionConversionFactor(10000);
     SmartDashboard.putNumber("Encoder Position", m_enc.getPosition());
 
   }
@@ -165,6 +164,13 @@ ArmDriveMotor.set(rightvalue);
     // TODO Auto-generated method stub
 
     
+  }
+
+
+
+
+
+  public static void ArmDriveMotor(double d) {
   }
 
 

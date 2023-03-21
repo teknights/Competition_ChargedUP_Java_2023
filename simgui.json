@@ -19,7 +19,18 @@
   "NTProvider": {
     "types": {
       "/FMSInfo": "FMSInfo",
-      "/Shuffleboard/IMU Sensor/Gyro": "Gyro"
+      "/Shuffleboard/IMU Sensor/Gyro": "Gyro",
+      "/SmartDashboard/SendableChooser[0]": "String Chooser"
+    }
+  },
+  "NetworkTables": {
+    "transitory": {
+      "Shuffleboard": {
+        "open": true
+      },
+      "SmartDashboard": {
+        "open": true
+      }
     }
   },
   "NetworkTables Info": {

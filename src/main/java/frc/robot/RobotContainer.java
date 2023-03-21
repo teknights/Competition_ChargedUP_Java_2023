@@ -73,7 +73,6 @@ public class RobotContainer {
   public RobotContainer() {
     //this sends the Gyro Data to ShuffleBoard
     Shuffleboard.getTab("IMU Sensor").add("Gyro", IMU);
-    ArmDrive.m_enc.setPositionConversionFactor(10000);
     SmartDashboard.putNumber("Encoder Position", ArmDrive.m_enc.getPosition());
     System.out.println(Math.round(IMU.getAngle()));
 
@@ -82,12 +81,14 @@ public class RobotContainer {
 //Calls drivetrain when nothing is using the driving motors for example during auto this line is disregarded until drivetrain is unused again and sets drivtrain to roughly 70% power
     drivetrain.setDefaultCommand(new RunCommand(() -> drivetrain.drive(((-drivController.getLeftY()*drivController.getLeftY())/1.2), ((drivController.getRightX()*drivController.getRightX())/1.2)), drivetrain));
     m_ArmDrive.setDefaultCommand(new RunCommand(() -> m_ArmDrive.Arm_Drive(),m_ArmDrive)); 
-    //ArmDrive.setDefaultCommand(new RunCommand(() -> new ArmHold()));
+   // ArmDrive.setDefaultCommand(new RunCommand(() -> new ArmHold()));
      //RB button Arm Controller pushes arm forward
     // m_armController.rightBumper().onTrue(new ArmKickDeploy());
      //LB Button Arm Controller retracts arm
    // m_armController.leftBumper().onTrue(new ArmKickRetract());
-    //new ArmHold();
+    ArmHold m_armhold = new ArmHold();
+    System.out.println("Where's Perry?");
+
 
     //Limits arm deploy by encoder
    /*if(ArmDrive.currentrotations > (0.2)) {

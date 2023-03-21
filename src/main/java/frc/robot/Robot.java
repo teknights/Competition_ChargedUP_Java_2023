@@ -45,6 +45,7 @@ public class Robot extends TimedRobot {
     m_ArmKick = new ArmKick();
     m_Claw = new Claw();
     CameraServer.startAutomaticCapture();
+    
     // PWM port 1;
     // Must be a PWM header, not MXP or DIO
     AddressableLED m_led = new AddressableLED(1);
