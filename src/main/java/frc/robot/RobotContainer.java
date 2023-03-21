@@ -7,6 +7,8 @@ import com.revrobotics.AbsoluteEncoder;
 //import com.revrobotics.SparkMaxRelativeEncoder;
 import com.revrobotics.SparkMaxAbsoluteEncoder;
 import frc.robot.subsystems.ArmDrive;
+import frc.robot.subsystems.ArmHold;
+
 import com.revrobotics.SparkMaxPIDController;
 import com.revrobotics.SparkMaxAbsoluteEncoder.Type;
 
@@ -86,7 +88,7 @@ public class RobotContainer {
     // m_armController.rightBumper().onTrue(new ArmKickDeploy());
      //LB Button Arm Controller retracts arm
    // m_armController.leftBumper().onTrue(new ArmKickRetract());
-    ArmHold m_armhold = new ArmHold();
+    ArmHold m_ArmHold = new ArmHold();
     System.out.println("Where's Perry?");
 
 
