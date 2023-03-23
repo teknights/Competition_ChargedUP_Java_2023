@@ -96,7 +96,7 @@ public void Arm_Drive()
         }
      
       }
-    if(VerticalLimitFoldedIn.get()) {
+  if(VerticalLimitFoldedIn.get()) {
         // We are going down but bottom limit is not tripped so go at commanded speed
         ArmDriveMotor.set(0);
        //System.out.println("Maximum Height Reached!!! Motor will now fall until it reaches a safe height!");
@@ -106,7 +106,7 @@ public void Arm_Drive()
       }
     
       
-      if(VerticalLimitFoldedOut.get()){
+  if(VerticalLimitFoldedOut.get()){
         ArmDriveMotor.set(0);
        System.out.println("Maximum Height Reached!!! Motor will now fall until it reaches a safe height!");
         if(-armrightydeadband >0) {
